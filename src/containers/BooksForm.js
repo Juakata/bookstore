@@ -19,7 +19,7 @@ class BooksForm extends Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     const name = event.target.name;
     this.setState({ [name]: event.target.value });
   }
