@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Book from '../components/Book';
 
-const BooksList = ({ books }) => {
+const BooksList = props => {
+  const { books } = props;
   const booksArr = books.map(book => (
     <Book book={book} key={book.id} />
   ));

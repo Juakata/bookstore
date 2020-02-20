@@ -1,57 +1,70 @@
 import React, { Component } from 'react';
-import { addBook } from '../actions/index';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addBook } from '../actions/index';
+
 
 const categories = [{ id: 1, category: 'Action' },
-{ id: 2, category: 'Biography' },
-{ id: 3, category: 'History' },
-{ id: 4, category: 'Horror' },
-{ id: 5, category: 'Kids' },
-{ id: 6, category: 'Learning' },
-{ id: 7, category: 'Sci-Fi' }];
+  { id: 2, category: 'Biography' },
+  { id: 3, category: 'History' },
+  { id: 4, category: 'Horror' },
+  { id: 5, category: 'Kids' },
+  { id: 6, category: 'Learning' },
+  { id: 7, category: 'Sci-Fi' }];
 
 class BooksForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.books.length + 1,
       title: null,
       category: categories[0].category,
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = event => {
-    const name = event.target.name;
+  handleChange(event) {
+    const { name } = event.target;
     this.setState({ [name]: event.target.value });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
-    const newBook = { ...this.state, id: 1 };
     const { addBook } = this.props;
-    addBook(newBook);
-    this.setState({ title: null, category: categories[0].category })
+    addBook(this.state);
+    this.setState(state => ({
+      id: state.id + 1,
+    }));
   }
 
   render() {
     const options = categories.map(element => <option key={element.id}>{element.category}</option>);
     return (
-      <div>
-        <form>
-          <input type="text" name="title" placeholder="title" onChange={this.handleChange} />
-          <select name="category" onChange={this.handleChange}>
-            {options}
-          </select>
-          <button type="button" onClick={this.handleSubmit}>Submit</button>
-        </form >
-        <div>{this.state.title}</div>
-        <div>{this.state.category}</div>
-      </div>
+      <form>
+        <input type="text" name="title" placeholder="title" onChange={this.handleChange} />
+        <select name="category" onChange={this.handleChange}>
+          {options}
+        </select>
+        <button type="button" onClick={this.handleSubmit}>Submit</button>
+      </form>
     );
   }
+}
+
+BooksForm.propTypes = {
+  books: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
+  addBook: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  addBook: book => { dispatch(addBook(book)) }
+const mapStateToProps = state => ({
+  books: state.books,
 });
 
-export default connect(null, mapDispatchToProps)(BooksForm);
+const mapDispatchToProps = dispatch => ({
+  addBook: book => dispatch(addBook(book)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BooksForm);

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import rootReducer from './reducers/index';
 
-const state = {
+const books = {
   books: [
     {
       id: 1,
@@ -26,7 +26,7 @@ const state = {
   ],
 };
 
-const store = createStore(rootReducer, state);
+const store = createStore(rootReducer, books);
 
 ReactDOM.render(
   <Provider store={store}>
