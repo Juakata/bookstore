@@ -46,7 +46,7 @@ class BooksForm extends Component {
         <select name="category" onChange={this.handleChange}>
           {options}
         </select>
-        <button type="submit" onSubmit={this.handleSubmit}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     );
   }
