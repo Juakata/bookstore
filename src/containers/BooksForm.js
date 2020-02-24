@@ -17,7 +17,7 @@ class BooksForm extends Component {
     super(props);
     this.state = {
       id: props.books.length + 1,
-      title: null,
+      title: '',
       category: categories[0].category,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -35,15 +35,18 @@ class BooksForm extends Component {
     addBook(this.state);
     this.setState(state => ({
       id: state.id + 1,
+      title: '',
+      category: categories[0].category,
     }));
   }
 
   render() {
+    const { title, category } = this.state;
     const options = categories.map(element => <option key={element.id}>{element.category}</option>);
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" name="title" placeholder="title" onChange={this.handleChange} required />
-        <select name="category" onChange={this.handleChange}>
+        <input type="text" name="title" value={title} placeholder="title" onChange={this.handleChange} required />
+        <select name="category" value={category} onChange={this.handleChange}>
           {options}
         </select>
         <button type="submit">Submit</button>
