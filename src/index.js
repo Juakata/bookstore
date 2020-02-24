@@ -4,9 +4,9 @@ import './index.css';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
-import booksReducer from './reducers/books';
+import rootReducer from './reducers/index';
 
-const state = {
+const books = {
   books: [
     {
       id: 1,
@@ -26,7 +26,7 @@ const state = {
   ],
 };
 
-const store = createStore(booksReducer, state);
+const store = createStore(rootReducer, books);
 
 ReactDOM.render(
   <Provider store={store}>
