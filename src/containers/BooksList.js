@@ -6,17 +6,12 @@ import { removeBook, changeFilter } from '../actions/index';
 import CategoryFilter from '../components/CategoryFilter';
 
 class BooksList extends Component {
-  constructor(props) {
-    super(props);
-    this.handleRemoveBook = this.handleRemoveBook.bind(this);
-  }
-
   handleFilterChange = event => {
     const { changeFilter } = this.props;
     changeFilter(event.target.value);
   }
 
-  handleRemoveBook(id) {
+  handleRemoveBook = id => {
     const { removeBook } = this.props;
     removeBook(id);
   }
