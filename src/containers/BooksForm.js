@@ -42,12 +42,17 @@ class BooksForm extends Component {
     const { title, category } = this.state;
     const options = categories.map(element => <option key={element.id}>{element.category}</option>);
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" name="title" value={title} placeholder="title" onChange={this.handleChange} required />
-        <select name="category" value={category} onChange={this.handleChange}>
-          {options}
-        </select>
-        <button type="submit">Submit</button>
+      <form className="form-book" onSubmit={this.handleSubmit}>
+        <fieldset>
+          <legend>ADD A NEW BOOK</legend>
+          <div className="grid">
+            <input type="text" name="title" value={title} placeholder="Book Title" onChange={this.handleChange} required />
+            <select name="category" value={category} onChange={this.handleChange}>
+              {options}
+            </select>
+            <button type="submit">Add Book</button>
+          </div>
+        </fieldset>
       </form>
     );
   }
