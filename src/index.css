@@ -33,6 +33,7 @@ legend {
 fieldset {
   padding: 20px;
   border: 5px solid RGBA(43, 163, 255, .3);
+  border-radius: 10px;
 }
 
 #title {
