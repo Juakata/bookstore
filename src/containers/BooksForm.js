@@ -20,16 +20,14 @@ class BooksForm extends Component {
       title: '',
       category: categories[0].category,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = event => {
     const { name } = event.target;
     this.setState({ [name]: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
     const { addBook } = this.props;
     addBook(this.state);
