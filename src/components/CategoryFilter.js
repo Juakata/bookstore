@@ -17,9 +17,12 @@ const CategoryFilter = ({ changeFilter }) => {
     </option>
   ));
   return (
-    <select name="categoryFilter" onChange={changeFilter}>
-      {options}
-    </select>
+    <div className="filter-wrapper">
+      <span>Look by category: </span>
+      <select name="categoryFilter" onChange={changeFilter}>
+        {options}
+      </select>
+    </div>
   );
 };
 

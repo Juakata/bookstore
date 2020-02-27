@@ -22,17 +22,20 @@ class BooksList extends Component {
     if (filter !== 'All') {
       books = books.filter(book => book.category === filter);
     }
-    const booksArr = books.map(book => (
-      <Book book={book} key={book.id} onClick={() => this.handleRemoveBook(book.id)} />
+    const booksArr = books.map((book, i) => (
+      <Book book={book} i={i} key={book.id} onClick={() => this.handleRemoveBook(book.id)} />
     ));
     return (
       <div>
         <table>
-          <thead>
+          <thead className="header">
             <tr>
-              <th>Book ID</th>
-              <th>Title</th>
-              <th>Category</th>
+              <th id="title">Bookstore CMS</th>
+              <th>Books</th>
+              <th id="categories-title">Categories</th>
+              <th id="user">
+                <i className="fas fa-user" />
+              </th>
             </tr>
           </thead>
           <tbody>
